@@ -24,14 +24,16 @@ public class AnimationAndMovementController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        playerInput.CharacterControls.Move.started += context => { currentMovement = context.ReadValue<Vector2>(); 
+        playerInput.CharacterControls.Move.started += context => 
+        {
+            currentMovementInput = context.ReadValue<Vector2>();
             currentMovement.x = currentMovementInput.x;
             currentMovement.z = currentMovementInput.y;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
         };
 
         playerInput.CharacterControls.Move.canceled += context => {
-            currentMovement = context.ReadValue<Vector2>();
+            currentMovementInput = context.ReadValue<Vector2>();
             currentMovement.x = currentMovementInput.x;
             currentMovement.z = currentMovementInput.y;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
