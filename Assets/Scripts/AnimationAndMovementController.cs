@@ -14,7 +14,7 @@ public class AnimationAndMovementController : MonoBehaviour
     Vector2 currentMovementInput;
     Vector3 currentMovement;
     bool isMovementPressed;
-    float rotationFactorPerFrame = 1.0f;
+    float rotationFactorPerFrame = 15f;
 
 
     void Awake()
@@ -55,7 +55,7 @@ public class AnimationAndMovementController : MonoBehaviour
 
         if (isMovementPressed)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+           Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
         }
         
