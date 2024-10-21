@@ -56,7 +56,7 @@ public class AnimationAndMovementController : MonoBehaviour
         if (isMovementPressed)
         {
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-           transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame);
+           transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
         }
         
     }
