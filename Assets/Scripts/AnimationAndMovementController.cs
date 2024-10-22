@@ -53,7 +53,7 @@ public class AnimationAndMovementController : MonoBehaviour
     {
         Vector3 positionToLookAt;
 
-        positionToLookAt.x = currentMovementInput.x;
+        positionToLookAt.x = currentMovement.x;
         positionToLookAt.y = 0.0f;
         positionToLookAt.z = currentMovement.z;
 
@@ -84,19 +84,19 @@ public class AnimationAndMovementController : MonoBehaviour
 
         if (isMovementPressed && !isWalking) 
         {
-            animator.SetBool("isWalking", true);
+            animator.SetBool(isWalkingHash, true);
         }
 
-        else if (isMovementPressed && !isWalking)
+        else if (!isMovementPressed && isWalking)
         {
-            animator.SetBool("isWalking", false);
+            animator.SetBool(isWalkingHash, false);
         }
 
         if ((isMovementPressed && isRunPressed) && !isRunning)
         {
             animator.SetBool(isRunningHash, true);
         }
-        else if((!isMovementPressed || !isRunPressed) && !isRunning)
+        else if((!isMovementPressed || !isRunPressed) && isRunning)
         {
             animator.SetBool(isRunningHash, false);  
         }
