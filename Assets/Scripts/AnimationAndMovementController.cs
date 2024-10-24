@@ -21,6 +21,8 @@ public class AnimationAndMovementController : MonoBehaviour
     bool isRunPressed;
     float rotationFactorPerFrame = 1.0f;
     float runMultiplier = 3.0f;
+    public float runSpeed = 5;
+    public float walkSpeed = 5;
 
 
     void Awake()
@@ -124,15 +126,30 @@ public class AnimationAndMovementController : MonoBehaviour
         handleGravity();
         handleRotation();
         handleAnimation();
+        
+
+        if (transform.position.x > -96f)
+        {
+            ApplyMovement();
+        }
+        if (transform.position.x < 104f)
+        {
+            ApplyMovement();
+        }
+        Vector3 newPosition = new Vector3(Mathf.Clamp(transform.position.x, -96, 104), transform.position.y, transform.position.z);
+        transform.position = newPosition;
+    }
+
+    private void ApplyMovement()
+    {
         if (isRunPressed)
         {
-            characterController.Move(currentRunMovement * Time.deltaTime);
+            characterController.Move(currentRunMovement * runSpeed * Time.deltaTime);
         }
-        else 
+        else
         {
-            characterController.Move(currentMovement * Time.deltaTime);
+            characterController.Move(currentMovement * walkSpeed * Time.deltaTime);
         }
-        
     }
 
     void OnEnable()
